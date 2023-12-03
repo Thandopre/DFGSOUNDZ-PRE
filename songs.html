@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFGSOUNDS - Songs</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #d9534f;
+            color: white;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1em;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        main {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .song {
+            margin-bottom: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .download-btn {
+            background-color: #5bc0de;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .download-count {
+            margin-top: 5px;
+            color: #5bc0de;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Explore Our Songs</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <main>
+        <h2>Discover Amazing Music</h2>
+
+        <div class="song">
+            <h3>kapa uni</h3>
+            <p>Artist: Ley C</p>
+            <p>Description: song prod by ley c</p>
+            <audio controls id="audioPlayer">
+                <source src="music/kapa uni.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <a class="download-btn" href="music/kapa uni.mp3" onclick="downloadSong('kapa uni.mp3')">Download</a>
+            <span class="download-count" id="downloadCount">0 Downloads</span>
+        </div>
+
+        <!-- Repeat the structure for other songs -->
+
+    </main>
+
+    <script>
+        let downloadCount = 0;
+
+        function downloadSong(songName) {
+            downloadCount++;
+            document.getElementById('downloadCount').textContent = `${downloadCount} Downloads`;
+            // Additional logic can be added here, such as updating the UI or sending data to a server.
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const audioPlayer = document.getElementById('audioPlayer');
+            
+            if (audioPlayer) {
+                let currentTime = 0;
+
+                window.addEventListener('beforeunload', function () {
+                    currentTime = audioPlayer.currentTime;
+                });
+
+                window.addEventListener('load', function () {
+                    audioPlayer.currentTime = currentTime;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
